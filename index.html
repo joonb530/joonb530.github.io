@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Life & Tastes Archive</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome for clean modern icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts: Pretendard alternative & clean sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ocean: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              200: '#bae0fd',
+              300: '#7cc5fb',
+              400: '#36a5f7',
+              500: '#0c87eb',
+              600: '#006bc9',
+              700: '#0155a3',
+              800: '#064886',
+              900: '#0b3d6f',
+              950: '#07264a',
+            },
+            mist: '#f8fafc',
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '"Noto Sans KR"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Smooth subtle animations and background touches */
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    
+    .cool-gradient {
+      background: radial-gradient(circle at 15% 15%, #e0effe 0%, #f0f7ff 45%, #ffffff 100%);
+    }
+
+    .placeholder-box {
+      border: 2px dashed #bae0fd;
+      background: #f8fafc;
+      transition: all 0.25s ease;
+    }
+    .placeholder-box:hover {
+      border-color: #36a5f7;
+      background: #f0f7ff;
+    }
+  </style>
+</head>
+
+<body class="bg-mist text-slate-800 font-sans antialiased selection:bg-ocean-100 selection:text-ocean-700">
+
+  <!-- ==================== 1. Header / Navigation ==================== -->
+  <header class="fixed top-0 left-0 w-full z-50 glass-nav border-b border-ocean-100/60 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <!-- Logo / Name Placeholder -->
+      <a href="#" class="text-xl font-bold tracking-tight text-ocean-950 flex items-center gap-2 hover:opacity-80 transition">
+        <span class="w-8 h-8 rounded-full bg-ocean-500 text-white flex items-center justify-center text-sm shadow-sm shadow-ocean-500/30">
+          <i class="fa-solid fa-water"></i>
+        </span>
+        <span>[나의 이름 / 아카이브명]</span>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+        <a href="#story" class="hover:text-ocean-600 transition-colors">걸어온 길 (Story)</a>
+        <a href="#tastes" class="hover:text-ocean-600 transition-colors">취향과 취미 (Tastes)</a>
+        <a href="#daily" class="hover:text-ocean-600 transition-colors">일상 조각 (Daily)</a>
+        <a href="#contact" class="hover:text-ocean-600 transition-colors">연락 (Contact)</a>
+      </nav>
+
+      <!-- Action / Contact Link -->
+      <div class="hidden md:flex items-center">
+        <a href="#contact" class="px-4 py-2 text-xs font-semibold rounded-full bg-ocean-50 text-ocean-700 hover:bg-ocean-100 border border-ocean-200 transition">
+          인사 건네기
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" aria-label="메뉴 열기" class="md:hidden text-slate-700 hover:text-ocean-600 p-2 text-lg">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white/95 border-b border-ocean-100 px-6 py-4 flex flex-col gap-3 text-sm font-medium text-slate-700 shadow-lg">
+      <a href="#story" class="py-2 hover:text-ocean-600">걸어온 길 (Story)</a>
+      <a href="#tastes" class="py-2 hover:text-ocean-600">취향과 취미 (Tastes)</a>
+      <a href="#daily" class="py-2 hover:text-ocean-600">일상 조각 (Daily)</a>
+      <a href="#contact" class="py-2 hover:text-ocean-600">연락 (Contact)</a>
+    </div>
+  </header>
+
+  <!-- ==================== 2. Hero / Cover Section ==================== -->
+  <section class="cool-gradient pt-32 pb-20 md:pt-40 md:pb-28 border-b border-ocean-100 relative overflow-hidden">
+    <!-- Subtle Ambient Glow -->
+    <div class="absolute -top-24 right-0 w-96 h-96 bg-ocean-200/40 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute top-1/2 -left-20 w-80 h-80 bg-sky-200/40 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Text & Quotes Block -->
+        <div class="lg:col-span-7 space-y-6">
+          <!-- Tag / Badge -->
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 border border-ocean-200 text-ocean-700 text-xs font-semibold shadow-xs">
+            <span class="w-2 h-2 rounded-full bg-ocean-400 animate-pulse"></span>
+            <span>[나의 현재 상태나 관심 키워드]</span>
+          </div>
+
+          <!-- Main Quote Placeholder -->
+          <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-snug">
+            "[좋아하는 글귀나 나를 관통하는 문장을 적어보세요]"
+          </h1>
+
+          <!-- Intro Paragraph Placeholder -->
+          <p class="text-base md:text-lg text-slate-600 font-normal leading-relaxed max-w-xl">
+            [이곳에 나를 소개하는 따뜻한 이야기를 2~3줄로 채워보세요. 거창한 수식어보다는 요즘 나의 시선이 머무는 곳, 내가 소중히 여기는 작은 일상의 가치들을 자유롭게 적을 수 있습니다.]
+          </p>
+
+          <!-- Keyword Badges -->
+          <div class="flex flex-wrap gap-2 pt-2">
+            <span class="px-3 py-1 text-xs font-medium rounded-md bg-ocean-100/70 text-ocean-800 border border-ocean-200/60"># [키워드 1 : e.g., 필름카메라]</span>
+            <span class="px-3 py-1 text-xs font-medium rounded-md bg-ocean-100/70 text-ocean-800 border border-ocean-200/60"># [키워드 2 : e.g., 아침산책]</span>
+            <span class="px-3 py-1 text-xs font-medium rounded-md bg-ocean-100/70 text-ocean-800 border border-ocean-200/60"># [키워드 3 : e.g., 시티팝]</span>
+          </div>
+        </div>
+
+        <!-- Cover Photo / Visual Placeholder -->
+        <div class="lg:col-span-5">
+          <div class="relative group">
+            <div class="w-full aspect-[4/5] rounded-3xl placeholder-box p-6 flex flex-col items-center justify-center text-center shadow-md hover:shadow-lg transition">
+              <div class="w-16 h-16 rounded-2xl bg-ocean-100 text-ocean-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-105 transition-transform">
+                <i class="fa-regular fa-image"></i>
+              </div>
+              <p class="text-sm font-semibold text-ocean-900 mb-1">[대표 일상/감성 사진 자리]</p>
+              <p class="text-xs text-slate-500 max-w-xs">자연광이 드는 창가, 뒷모습, 애착이 담긴 소품 등 마음에 드는 사진을 넣어주세요.</p>
+              <div class="mt-4 text-[11px] text-ocean-600 font-mono bg-ocean-50 px-3 py-1 rounded-full border border-ocean-200">
+                추천 비율 4:5
+              </div>
+            </div>
+            <!-- Decorative badge -->
+            <div class="absolute -bottom-4 -left-4 bg-white/95 backdrop-blur-sm border border-ocean-100 px-4 py-2.5 rounded-2xl shadow-sm text-xs text-slate-600 flex items-center gap-2">
+              <i class="fa-solid fa-compass text-ocean-500"></i>
+              <span>[현재 머무는 도시 또는 계절]</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 3. My Story Section ==================== -->
+  <section id="story" class="py-24 max-w-6xl mx-auto px-6">
+    <div class="mb-14">
+      <div class="flex items-center gap-2 text-ocean-600 text-xs font-bold uppercase tracking-widest mb-2">
+        <i class="fa-solid fa-seedling"></i>
+        <span>My Journey</span>
+      </div>
+      <h2 class="text-2xl md:text-3xl font-bold text-slate-900">걸어온 길 & 생각들</h2>
+      <p class="text-slate-500 text-sm mt-1">삶의 변곡점들과 나라는 사람을 빚어낸 시간들을 기록합니다.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      
+      <!-- Left: Life Timeline Slots -->
+      <div class="lg:col-span-7 space-y-8 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-ocean-200">
+        
+        <!-- Timeline Item 1 -->
+        <div class="relative flex items-start gap-6 group">
+          <div class="w-8 h-8 rounded-full bg-white border-2 border-ocean-500 text-ocean-600 flex items-center justify-center text-xs shadow-sm z-10 shrink-0 mt-1">
+            01
+          </div>
+          <div class="flex-1 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs hover:border-ocean-300 hover:shadow-sm transition">
+            <span class="text-xs font-semibold text-ocean-600 bg-ocean-50 px-2.5 py-1 rounded-md border border-ocean-100 inline-block mb-2">
+              [어린 시절 / 기억의 출발점]
+            </span>
+            <h3 class="text-base font-bold text-slate-900 mb-2">[호기심이 유난히 많았던 시절의 기억]</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              [이곳에 어린 시절 좋아했던 놀이, 유년기의 특별했던 경험이나 나를 형성한 소중한 기억을 편안하게 적어보세요.]
+            </p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 2 -->
+        <div class="relative flex items-start gap-6 group">
+          <div class="w-8 h-8 rounded-full bg-white border-2 border-ocean-400 text-ocean-600 flex items-center justify-center text-xs shadow-sm z-10 shrink-0 mt-1">
+            02
+          </div>
+          <div class="flex-1 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs hover:border-ocean-300 hover:shadow-sm transition">
+            <span class="text-xs font-semibold text-ocean-600 bg-ocean-50 px-2.5 py-1 rounded-md border border-ocean-100 inline-block mb-2">
+              [학창 시절 / 탐색의 시간]
+            </span>
+            <h3 class="text-base font-bold text-slate-900 mb-2">[무언가에 깊게 빠져들었던 순간]</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              [밤새 열중했던 취미, 친구들과 나누었던 추억, 혹은 처음으로 진짜 나를 마주했던 경험을 채워 넣을 수 있습니다.]
+            </p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 3 -->
+        <div class="relative flex items-start gap-6 group">
+          <div class="w-8 h-8 rounded-full bg-white border-2 border-ocean-600 text-ocean-600 flex items-center justify-center text-xs shadow-sm z-10 shrink-0 mt-1">
+            03
+          </div>
+          <div class="flex-1 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs hover:border-ocean-300 hover:shadow-sm transition">
+            <span class="text-xs font-semibold text-ocean-600 bg-ocean-50 px-2.5 py-1 rounded-md border border-ocean-100 inline-block mb-2">
+              [현재 / 지금의 나]
+            </span>
+            <h3 class="text-base font-bold text-slate-900 mb-2">[내가 꿈꾸며 나아가는 일상]</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              [지금 가장 의미 있게 시간을 보내는 방식, 현재의 목표나 일상 속에서 지키고 싶은 나만의 루틴을 적어보세요.]
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: Casual Q&A Cards -->
+      <div class="lg:col-span-5 bg-gradient-to-br from-white to-ocean-50/50 p-7 rounded-3xl border border-ocean-100 shadow-sm space-y-6">
+        <div class="flex items-center gap-3 pb-3 border-b border-ocean-100">
+          <div class="w-9 h-9 rounded-xl bg-ocean-500 text-white flex items-center justify-center text-sm shadow-xs">
+            <i class="fa-regular fa-comment-dots"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900">가벼운 문답 (10문 10답 슬롯)</h3>
+            <p class="text-xs text-slate-500">나를 조금 더 친근하게 알려주는 작은 조각들</p>
+          </div>
+        </div>
+
+        <div class="space-y-4 text-xs">
+          <!-- Question 1 -->
+          <div class="p-3.5 bg-white rounded-xl border border-ocean-100/80">
+            <span class="text-ocean-600 font-bold block mb-1">Q. 요즘 가장 좋아하는 시간대는?</span>
+            <p class="text-slate-600">[A. 예: 해 질 녘 바람이 시원해지는 오후 6시 30분]</p>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="p-3.5 bg-white rounded-xl border border-ocean-100/80">
+            <span class="text-ocean-600 font-bold block mb-1">Q. 나를 행복하게 만드는 소소한 순간?</span>
+            <p class="text-slate-600">[A. 예: 갓 내린 차가운 드립 커피 한 모금 마실 때]</p>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="p-3.5 bg-white rounded-xl border border-ocean-100/80">
+            <span class="text-ocean-600 font-bold block mb-1">Q. 가장 좋아하는 계절과 그 이유는?</span>
+            <p class="text-slate-600">[A. 예: 초여름, 밤공기가 맑고 푸른 나무 냄새가 좋아서]</p>
+          </div>
+
+          <!-- Question 4 -->
+          <div class="p-3.5 bg-white rounded-xl border border-ocean-100/80">
+            <span class="text-ocean-600 font-bold block mb-1">Q. 쉴 때 주로 무엇을 하나요?</span>
+            <p class="text-slate-600">[A. 예: 좋아하는 음악 틀어두고 정처 없이 동네 산책하기]</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== 4. Tastes & Hobby Section ==================== -->
+  <section id="tastes" class="py-24 bg-white border-y border-ocean-100">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4">
+        <div>
+          <div class="flex items-center gap-2 text-ocean-600 text-xs font-bold uppercase tracking-widest mb-2">
+            <i class="fa-solid fa-shapes"></i>
+            <span>Curated Tastes</span>
+          </div>
+          <h2 class="text-2xl md:text-3xl font-bold text-slate-900">취향과 애착</h2>
+          <p class="text-slate-500 text-sm mt-1">내가 머무는 공간과 마음을 채워주는 것들</p>
+        </div>
+        <span class="text-xs text-ocean-700 bg-ocean-50 border border-ocean-200 px-3 py-1.5 rounded-full self-start md:self-auto">
+          [취향 카드 슬롯]
+        </span>
+      </div>
+
+      <!-- Tastes Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Taste Card 1: Music -->
+        <div class="bg-mist rounded-2xl border border-slate-200/90 p-6 flex flex-col justify-between hover:border-ocean-300 hover:shadow-md transition">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-ocean-100 text-ocean-600 flex items-center justify-center text-xl mb-5">
+              <i class="fa-solid fa-headphones-simple"></i>
+            </div>
+            <span class="text-xs font-semibold text-ocean-600 tracking-wider uppercase block mb-1">Music</span>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">[음악 / 플레이리스트]</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+              [자주 반복해서 듣는 앨범, 좋아하는 아티스트, 혹은 특정한 계절마다 꺼내 듣는 음악에 대한 짧은 이야기]
+            </p>
+          </div>
+          <!-- Internal item detail placeholder -->
+          <div class="pt-4 border-t border-slate-200/80 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-slate-200 text-slate-400 flex items-center justify-center text-xs shrink-0">
+              <i class="fa-solid fa-compact-disc"></i>
+            </div>
+            <div class="min-w-0">
+              <p class="text-xs font-bold text-slate-800 truncate">[대표 곡/앨범 이름]</p>
+              <p class="text-[11px] text-slate-500 truncate">[아티스트 이름]</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Taste Card 2: Book / Film -->
+        <div class="bg-mist rounded-2xl border border-slate-200/90 p-6 flex flex-col justify-between hover:border-ocean-300 hover:shadow-md transition">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center text-xl mb-5">
+              <i class="fa-solid fa-book-open"></i>
+            </div>
+            <span class="text-xs font-semibold text-sky-600 tracking-wider uppercase block mb-1">Book & Film</span>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">[책과 영화]</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+              [밑줄을 긋게 만들었던 책 속 한 문장, 여운이 오래 남았던 영화의 명장면과 감상을 기록해보세요]
+            </p>
+          </div>
+          <!-- Internal item detail placeholder -->
+          <div class="pt-4 border-t border-slate-200/80 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-slate-200 text-slate-400 flex items-center justify-center text-xs shrink-0">
+              <i class="fa-solid fa-film"></i>
+            </div>
+            <div class="min-w-0">
+              <p class="text-xs font-bold text-slate-800 truncate">[인상 깊은 작품 제목]</p>
+              <p class="text-[11px] text-slate-500 truncate">[한 줄 감상 또는 작가/감독]</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Taste Card 3: Hobby / Routine -->
+        <div class="bg-mist rounded-2xl border border-slate-200/90 p-6 flex flex-col justify-between hover:border-ocean-300 hover:shadow-md transition">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-cyan-100 text-cyan-700 flex items-center justify-center text-xl mb-5">
+              <i class="fa-solid fa-mug-hot"></i>
+            </div>
+            <span class="text-xs font-semibold text-cyan-700 tracking-wider uppercase block mb-1">Routine & Hobby</span>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">[취미와 작은 루틴]</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+              [요리, 러닝, 식물 가꾸기, 핸드드립 커피 등 내가 정성 들여 시간을 쏟는 특별한 활동들을 적어주세요]
+            </p>
+          </div>
+          <!-- Internal item detail placeholder -->
+          <div class="pt-4 border-t border-slate-200/80 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-slate-200 text-slate-400 flex items-center justify-center text-xs shrink-0">
+              <i class="fa-solid fa-heart"></i>
+            </div>
+            <div class="min-w-0">
+              <p class="text-xs font-bold text-slate-800 truncate">[취미/활동 명칭]</p>
+              <p class="text-[11px] text-slate-500 truncate">[매주/매월 실천하는 주기]</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 5. Daily Gallery Section ==================== -->
+  <section id="daily" class="py-24 max-w-6xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4">
+      <div>
+        <div class="flex items-center gap-2 text-ocean-600 text-xs font-bold uppercase tracking-widest mb-2">
+          <i class="fa-solid fa-camera"></i>
+          <span>Moments</span>
+        </div>
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-900">일상의 조각들</h2>
+        <p class="text-slate-500 text-sm mt-1">지나치는 계절과 시선이 닿았던 풍경의 기록</p>
+      </div>
+      <div class="text-xs text-slate-400">
+        * 사진 6장 갤러리 슬롯
+      </div>
+    </div>
+
+    <!-- Gallery Grid (3 Columns) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      
+      <!-- Photo Slot 1 -->
+      <div class="group relative rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-xs hover:shadow-md transition">
+        <div class="w-full aspect-[4/3] placeholder-box flex flex-col items-center justify-center p-4">
+          <i class="fa-regular fa-image text-ocean-400 text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
+          <span class="text-xs font-medium text-ocean-700">[사진 1 자리]</span>
+          <span class="text-[11px] text-slate-400 mt-1">하늘/바다 풍경</span>
+        </div>
+        <div class="p-4 bg-white">
+          <p class="text-xs font-bold text-slate-800">[사진 제목 또는 짧은 메모]</p>
+          <span class="text-[11px] text-slate-400 mt-0.5 block">[촬영 날짜 / 장소]</span>
+        </div>
+      </div>
+
+      <!-- Photo Slot 2 -->
+      <div class="group relative rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-xs hover:shadow-md transition">
+        <div class="w-full aspect-[4/3] placeholder-box flex flex-col items-center justify-center p-4">
+          <i class="fa-regular fa-image text-ocean-400 text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
+          <span class="text-xs font-medium text-ocean-700">[사진 2 자리]</span>
+          <span class="text-[11px] text-slate-400 mt-1">카페/책상 위의 풍경</span>
+        </div>
+        <div class="p-4 bg-white">
+          <p class="text-xs font-bold text-slate-800">[사진 제목 또는 짧은 메모]</p>
+          <span class="text-[11px] text-slate-400 mt-0.5 block">[촬영 날짜 / 장소]</span>
+        </div>
+      </div>
+
+      <!-- Photo Slot 3 -->
+      <div class="group relative rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-xs hover:shadow-md transition">
+        <div class="w-full aspect-[4/3] placeholder-box flex flex-col items-center justify-center p-4">
+          <i class="fa-regular fa-image text-ocean-400 text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
+          <span class="text-xs font-medium text-ocean-700">[사진 3 자리]</span>
+          <span class="text-[11px] text-slate-400 mt-1">산책길 풍경</span>
+        </div>
+        <div class="p-4 bg-white">
+          <p class="text-xs font-bold text-slate-800">[사진 제목 또는 짧은 메모]</p>
+          <span class="text-[11px] text-slate-400 mt-0.5 block">[촬영 날짜 / 장소]</span>
+        </div>
+      </div>
+
+      <!-- Photo Slot 4 -->
+      <div class="group relative rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-xs hover:shadow-md transition">
+        <div class="w-full aspect-[4/3] placeholder-box flex flex-col items-center justify-center p-4">
+          <i class="fa-regular fa-image text-ocean-400 text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
+          <span class="text-xs font-medium text-ocean-700">[사진 4 자리]</span>
+          <span class="text-[11px] text-slate-400 mt-1">소중한 사람/반려동물</span>
+        </div>
+        <div class="p-4 bg-white">
+          <p class="text-xs font-bold text-slate-800">[사진 제목 또는 짧은 메모]</p>
+          <span class="text-[11px] text-slate-400 mt-0.5 block">[촬영 날짜 / 장소]</span>
+        </div>
+      </div>
+
+      <!-- Photo Slot 5 -->
+      <div class="group relative rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-xs hover:shadow-md transition">
+        <div class="w-full aspect-[4/3] placeholder-box flex flex-col items-center justify-center p-4">
+          <i class="fa-regular fa-image text-ocean-400 text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
+          <span class="text-xs font-medium text-ocean-700">[사진 5 자리]</span>
+          <span class="text-[11px] text-slate-400 mt-1">좋아하는 음식/커피</span>
+        </div>
+        <div class="p-4 bg-white">
+          <p class="text-xs font-bold text-slate-800">[사진 제목 또는 짧은 메모]</p>
+          <span class="text-[11px] text-slate-400 mt-0.5 block">[촬영 날짜 / 장소]</span>
+        </div>
+      </div>
+
+      <!-- Photo Slot 6 -->
+      <div class="group relative rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-xs hover:shadow-md transition">
+        <div class="w-full aspect-[4/3] placeholder-box flex flex-col items-center justify-center p-4">
+          <i class="fa-regular fa-image text-ocean-400 text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
+          <span class="text-xs font-medium text-ocean-700">[사진 6 자리]</span>
+          <span class="text-[11px] text-slate-400 mt-1">여행지의 한 장면</span>
+        </div>
+        <div class="p-4 bg-white">
+          <p class="text-xs font-bold text-slate-800">[사진 제목 또는 짧은 메모]</p>
+          <span class="text-[11px] text-slate-400 mt-0.5 block">[촬영 날짜 / 장소]</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== 6. Footer & Contact ==================== -->
+  <footer id="contact" class="bg-ocean-950 text-white pt-20 pb-12 border-t border-ocean-900">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 pb-16 border-b border-ocean-900/80">
+        
+        <!-- Left: Gentle Greeting -->
+        <div class="space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-ocean-900 text-ocean-300 text-xs">
+            <i class="fa-solid fa-envelope-open-text"></i>
+            <span>Say Hello</span>
+          </div>
+          <h2 class="text-2xl md:text-3xl font-bold tracking-tight">
+            "언제든 편하게 인사 건네주세요."
+          </h2>
+          <p class="text-sm text-ocean-200/80 max-w-md leading-relaxed">
+            [취향에 대한 공감이나 일상에 관한 소소한 대화 모두 환영합니다. 아래 채널을 통해 언제든 연락할 수 있습니다.]
+          </p>
+        </div>
+
+        <!-- Right: Social & Contact Slots -->
+        <div class="flex flex-col justify-center space-y-4">
+          
+          <!-- Email Slot with Copy Feature -->
+          <div class="flex items-center justify-between p-4 rounded-2xl bg-ocean-900/50 border border-ocean-800/80">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-ocean-800 text-ocean-300 flex items-center justify-center text-sm">
+                <i class="fa-regular fa-envelope"></i>
+              </div>
+              <div>
+                <p class="text-xs text-ocean-300">이메일</p>
+                <p id="emailText" class="text-sm font-medium text-white">[youremail@example.com]</p>
+              </div>
+            </div>
+            <button id="copyBtn" class="px-3 py-1.5 rounded-lg bg-ocean-800 hover:bg-ocean-700 text-ocean-100 text-xs transition flex items-center gap-1.5">
+              <i class="fa-regular fa-copy"></i>
+              <span id="copyLabel">복사</span>
+            </button>
+          </div>
+
+          <!-- Social Links Placeholder -->
+          <div class="flex flex-wrap gap-3 pt-2">
+            <a href="#" class="px-4 py-2 rounded-xl bg-ocean-900/40 border border-ocean-800 text-ocean-200 hover:text-white hover:border-ocean-600 transition text-xs flex items-center gap-2">
+              <i class="fa-brands fa-instagram text-ocean-400"></i>
+              <span>Instagram: [ @아이디 ]</span>
+            </a>
+            <a href="#" class="px-4 py-2 rounded-xl bg-ocean-900/40 border border-ocean-800 text-ocean-200 hover:text-white hover:border-ocean-600 transition text-xs flex items-center gap-2">
+              <i class="fa-solid fa-pen-nib text-ocean-400"></i>
+              <span>Blog: [ 블로그 링크 ]</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom Credits -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-ocean-400/80">
+        <p>© 2026 [이름]. All moments and stories recorded.</p>
+        <p class="flex items-center gap-1">
+          <span>Designed with a cool blue breeze</span>
+          <i class="fa-solid fa-heart text-ocean-500 text-[10px]"></i>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Notification Toast for Copy -->
+  <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 text-white text-xs px-4 py-2.5 rounded-xl shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-2 z-50">
+    <i class="fa-solid fa-check text-ocean-400"></i>
+    <span>이메일 주소가 클립보드에 복사되었습니다.</span>
+  </div>
+
+  <!-- Interactive JavaScript -->
+  <script>
+    // Mobile navigation toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu on clicking any navigation link
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Email copy feature using execCommand fallback
+    const copyBtn = document.getElementById('copyBtn');
+    const emailText = document.getElementById('emailText').innerText;
+    const toast = document.getElementById('toast');
+    const copyLabel = document.getElementById('copyLabel');
+
+    copyBtn.addEventListener('click', () => {
+      const tempInput = document.createElement('textarea');
+      tempInput.value = emailText;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      
+      try {
+        document.execCommand('copy');
+        // Show Toast
+        copyLabel.innerText = "완료";
+        toast.classList.remove('translate-y-20', 'opacity-0');
+        
+        setTimeout(() => {
+          toast.classList.add('translate-y-20', 'opacity-0');
+          copyLabel.innerText = "복사";
+        }, 2500);
+      } catch (err) {
+        console.error('Copy failed:', err);
+      } finally {
+        document.body.removeChild(tempInput);
+      }
+    });
+  </script>
+</body>
+</html>
