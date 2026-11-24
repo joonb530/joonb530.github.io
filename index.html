@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel & Food Log - Wireframe</title>
+  <!-- Pretendard Font -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --primary-light: #e0f2fe;
+      --primary-bg: #f0f9ff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border-wire: #94a3b8;
+      --border-light: #e2e8f0;
+      --card-bg: #ffffff;
+      --box-placeholder: #f8fafc;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      background-color: var(--primary-bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #ffffff;
+      border-bottom: 2px dashed var(--primary);
+      padding: 1rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .auth-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .btn-outline {
+      border: 1.5px solid var(--primary);
+      background: #ffffff;
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary-light);
+    }
+
+    .btn-primary {
+      border: 1.5px solid var(--primary);
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .user-tag {
+      font-size: 0.875rem;
+      color: var(--primary-hover);
+      font-weight: 600;
+      background: var(--primary-light);
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      width: 100%;
+      flex: 1;
+    }
+
+    /* 소개 섹션 */
+    .intro-section {
+      background: #ffffff;
+      border: 2px dashed var(--border-wire);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .intro-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+      letter-spacing: 0.05em;
+    }
+
+    .intro-text {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    /* 포스팅 피드 */
+    .feed-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 2px solid var(--border-light);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+    }
+
+    .card-thumb {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: var(--box-placeholder);
+      border-bottom: 2px dashed var(--border-wire);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .card-thumb-badge {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      background: rgba(2, 132, 199, 0.9);
+      color: #fff;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    .card-body {
+      padding: 1rem 1.25rem;
+      background: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .card-lock {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* 상세 페이지 뷰 */
+    .post-detail-view {
+      display: none;
+      background: #ffffff;
+      border: 2px solid var(--primary);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08);
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-weight: 700;
+      cursor: pointer;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .detail-header {
+      border-bottom: 2px dashed var(--border-wire);
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .detail-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .gallery-box {
+      aspect-ratio: 4 / 3;
+      background: var(--box-placeholder);
+      border: 2px dashed var(--border-wire);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .detail-desc-box {
+      background: var(--primary-bg);
+      border: 2px dashed var(--primary);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .comment-section {
+      border-top: 2px dashed var(--border-wire);
+      padding-top: 1.5rem;
+    }
+
+    .comment-list {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .comment-item {
+      padding: 0.75rem 1rem;
+      background: var(--box-placeholder);
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+
+    .comment-meta {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+      font-size: 0.8rem;
+    }
+
+    .comment-form {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .comment-input {
+      flex: 1;
+      padding: 0.6rem 0.8rem;
+      border: 1.5px solid var(--border-wire);
+      border-radius: 6px;
+      font-family: inherit;
+    }
+
+    .comment-input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    /* 모달 */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(2px);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 12px;
+      border: 2px solid var(--primary);
+      padding: 1.75rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      color: var(--text-main);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      border: 1.5px solid var(--border-wire);
+      border-radius: 6px;
+      font-family: inherit;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .modal-actions .btn {
+      flex: 1;
+    }
+
+    .switch-mode-text {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .switch-mode-text a {
+      color: var(--primary);
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 헤더 -->
+  <header>
+    <div class="header-inner">
+      <div class="logo" onclick="showMainFeed()">
+        <span>✦</span>
+        <span>TRIP & FOOD LOG</span>
+      </div>
+      <div class="auth-nav" id="authNav">
+        <!-- JS로 동적 렌더링 -->
+      </div>
+    </div>
+  </header>
+
+  <!-- 컨테이너 -->
+  <div class="container">
+    
+    <!-- 1. 메인 피드 영역 -->
+    <div id="mainFeedView">
+      <!-- 상단 한 줄 소개 박스 -->
+      <section class="intro-section">
+        <div class="intro-label">ABOUT ME</div>
+        <div class="intro-text">[ 한 줄 소개 영역: 발길 닿는 곳의 기록과 맛있는 순간들을 담습니다. ]</div>
+      </section>
+
+      <!-- 포스팅 목록 와이어프레임 그리드 -->
+      <section class="feed-grid" id="feedGrid">
+        <!-- JS 렌더링 -->
+      </section>
+    </div>
+
+    <!-- 2. 상세 포스팅 뷰 (회원 전용) -->
+    <div id="postDetailView" class="post-detail-view">
+      <button class="back-btn" onclick="showMainFeed()">← 목록으로 돌아가기</button>
+      
+      <div class="detail-header">
+        <h2 id="detailTitle" style="font-size: 1.5rem; font-weight: 700;">[장소 이름]</h2>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">작성일: 2026.11.24 | 작성자: 본인</span>
+      </div>
+
+      <h4 style="font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--primary);">[더 많은 사진 갤러리 와이어프레임]</h4>
+      <div class="detail-gallery">
+        <div class="gallery-box">[상세 사진 1]</div>
+        <div class="gallery-box">[상세 사진 2]</div>
+        <div class="gallery-box">[상세 사진 3]</div>
+      </div>
+
+      <h4 style="font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--primary);">[그곳에 대한 소개 와이어프레임]</h4>
+      <div class="detail-desc-box">
+        <p>[장소 소개글 와이어프레임 영역: 위치 정보, 추천 메뉴, 분위기 및 상세 후기 텍스트가 표시됩니다.]</p>
+      </div>
+
+      <!-- 댓글 영역 -->
+      <div class="comment-section">
+        <h3 style="font-size: 1.1rem; font-weight: 700;">댓글</h3>
+        <form class="comment-form" onsubmit="handleCommentSubmit(event)">
+          <input type="text" id="commentInput" class="comment-input" placeholder="댓글을 입력하세요..." required>
+          <button type="submit" class="btn btn-primary">등록</button>
+        </form>
+
+        <div class="comment-list" id="commentList">
+          <!-- JS 렌더링 -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 회원가입/로그인 모달 -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-card">
+      <h3 class="modal-title" id="modalTitle">로그인</h3>
+      <p class="modal-desc" id="modalDesc">포스팅을 열람하고 댓글을 남기려면 로그인이 필요합니다.</p>
+      
+      <form id="authForm" onsubmit="handleAuthSubmit(event)">
+        <div class="form-group" id="nameFieldGroup" style="display: none;">
+          <label class="form-label">이름(닉네임)</label>
+          <input type="text" id="authName" class="form-input" placeholder="홍길동">
+        </div>
+        <div class="form-group">
+          <label class="form-label">이메일</label>
+          <input type="email" id="authEmail" class="form-input" placeholder="user@example.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">비밀번호</label>
+          <input type="password" id="authPassword" class="form-input" placeholder="비밀번호 입력" required>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-outline" onclick="closeAuthModal()">닫기</button>
+          <button type="submit" class="btn btn-primary" id="modalSubmitBtn">로그인</button>
+        </div>
+      </form>
+
+      <div class="switch-mode-text" id="switchModeContainer">
+        계정이 없으신가요? <a onclick="toggleAuthMode(true)">회원가입하기</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 1. 임의의 포스팅 목록 와이어프레임 데이터
+    const POSTS = [
+      { id: 1, name: "[부산 해운대 바다뷰 카페]" },
+      { id: 2, name: "[강릉 안목해변 수제버거 맛집]" },
+      { id: 3, name: "[제주 애월 오션뷰 숙소]" },
+      { id: 4, name: "[속초 중앙시장 닭강정 투어]" },
+      { id: 5, name: "[경주 황리단길 한옥 베이커리]" },
+      { id: 6, name: "[여수 밤바다 포차거리]" }
+    ];
+
+    const STORAGE_KEY_USERS = "gh_trip_users";
+    const STORAGE_KEY_AUTH = "gh_trip_current_user";
+    const STORAGE_KEY_COMMENTS = "gh_trip_comments";
+
+    let isSignUpMode = false;
+    let currentPostId = null;
+
+    // 초기화
+    window.addEventListener("DOMContentLoaded", () => {
+      renderHeader();
+      renderFeed();
+    });
+
+    // 인증 헬퍼
+    function getCurrentUser() {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY_AUTH) || "null");
+    }
+
+    function getUsers() {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY_USERS) || "[]");
+    }
+
+    // 헤더 렌더링
+    function renderHeader() {
+      const authNav = document.getElementById("authNav");
+      const user = getCurrentUser();
+
+      if (user) {
+        authNav.innerHTML = `
+          <span class="user-tag">👤 ${user.name} 님</span>
+          <button class="btn btn-outline" onclick="logout()">로그아웃</button>
+        `;
+      } else {
+        authNav.innerHTML = `
+          <button class="btn btn-outline" onclick="openAuthModal(false)">로그인</button>
+          <button class="btn btn-primary" onclick="openAuthModal(true)">회원가입</button>
+        `;
+      }
+    }
+
+    // 메인 피드 렌더링
+    function renderFeed() {
+      const feedGrid = document.getElementById("feedGrid");
+      const user = getCurrentUser();
+
+      feedGrid.innerHTML = POSTS.map(post => `
+        <article class="card" onclick="handleCardClick(${post.id})">
+          <div class="card-thumb">
+            <span class="card-thumb-badge">${user ? "열람 가능" : "회원 전용"}</span>
+            [ 메인 사진 와이어프레임 ]
+          </div>
+          <div class="card-body">
+            <span class="card-title">${post.name}</span>
+            <span class="card-lock">${user ? "→" : "🔒"}</span>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    // 카드 클릭 핸들러 (권한 제어 핵심)
+    function handleCardClick(postId) {
+      const user = getCurrentUser();
+      if (!user) {
+        openAuthModal(false, "회원가입 또는 로그인해야 상세 포스팅을 열람할 수 있습니다.");
+        return;
+      }
+      openDetailView(postId);
+    }
+
+    // 상세 페이지 열기
+    function openDetailView(postId) {
+      currentPostId = postId;
+      const post = POSTS.find(p => p.id === postId);
+
+      document.getElementById("mainFeedView").style.display = "none";
+      document.getElementById("postDetailView").style.display = "block";
+      document.getElementById("detailTitle").innerText = post ? post.name : "[장소명]";
+
+      renderComments(postId);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // 메인으로 돌아가기
+    function showMainFeed() {
+      document.getElementById("postDetailView").style.display = "none";
+      document.getElementById("mainFeedView").style.display = "block";
+      currentPostId = null;
+      renderFeed();
+    }
+
+    // 댓글 렌더링 & 저장
+    function getComments(postId) {
+      const allComments = JSON.parse(localStorage.getItem(STORAGE_KEY_COMMENTS) || "{}");
+      return allComments[postId] || [];
+    }
+
+    function renderComments(postId) {
+      const listEl = document.getElementById("commentList");
+      const comments = getComments(postId);
+
+      if (comments.length === 0) {
+        listEl.innerHTML = `<div style="font-size: 0.85rem; color: var(--text-muted); padding: 0.5rem 0;">등록된 댓글이 없습니다. 첫 댓글을 남겨보세요.</div>`;
+        return;
+      }
+
+      listEl.innerHTML = comments.map(c => `
+        <div class="comment-item">
+          <div class="comment-meta">${c.author} · <span style="font-weight: 400; color: #94a3b8;">${c.date}</span></div>
+          <div>${c.text}</div>
+        </div>
+      `).join("");
+    }
+
+    function handleCommentSubmit(e) {
+      e.preventDefault();
+      const user = getCurrentUser();
+      if (!user) {
+        openAuthModal(false, "댓글을 작성하려면 먼저 로그인해주세요.");
+        return;
+      }
+
+      const input = document.getElementById("commentInput");
+      const text = input.value.trim();
+      if (!text) return;
+
+      const allComments = JSON.parse(localStorage.getItem(STORAGE_KEY_COMMENTS) || "{}");
+      if (!allComments[currentPostId]) {
+        allComments[currentPostId] = [];
+      }
+
+      allComments[currentPostId].push({
+        author: user.name,
+        text: text,
+        date: new Date().toLocaleDateString()
+      });
+
+      localStorage.setItem(STORAGE_KEY_COMMENTS, JSON.stringify(allComments));
+      input.value = "";
+      renderComments(currentPostId);
+    }
+
+    // 모달 관리
+    function openAuthModal(signup = false, customDesc = null) {
+      isSignUpMode = signup;
+      updateModalUI(customDesc);
+      document.getElementById("authModal").style.display = "flex";
+    }
+
+    function closeAuthModal() {
+      document.getElementById("authModal").style.display = "none";
+      document.getElementById("authForm").reset();
+    }
+
+    function toggleAuthMode(toSignUp) {
+      isSignUpMode = toSignUp;
+      updateModalUI();
+    }
+
+    function updateModalUI(customDesc) {
+      const title = document.getElementById("modalTitle");
+      const desc = document.getElementById("modalDesc");
+      const nameGroup = document.getElementById("nameFieldGroup");
+      const submitBtn = document.getElementById("modalSubmitBtn");
+      const switcher = document.getElementById("switchModeContainer");
+
+      if (isSignUpMode) {
+        title.innerText = "회원가입";
+        desc.innerText = customDesc || "간단한 정보 입력 후 포스팅을 감상하고 댓글을 작성해보세요.";
+        nameGroup.style.display = "block";
+        submitBtn.innerText = "가입 완료";
+        switcher.innerHTML = `이미 계정이 있으신가요? <a onclick="toggleAuthMode(false)">로그인하기</a>`;
+      } else {
+        title.innerText = "로그인";
+        desc.innerText = customDesc || "포스팅 열람 및 댓글 작성을 위해 로그인해주세요.";
+        nameGroup.style.display = "none";
+        submitBtn.innerText = "로그인";
+        switcher.innerHTML = `계정이 없으신가요? <a onclick="toggleAuthMode(true)">회원가입하기</a>`;
+      }
+    }
+
+    // 인증 폼 제출 처리
+    function handleAuthSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById("authEmail").value.trim();
+      const password = document.getElementById("authPassword").value.trim();
+      const users = getUsers();
+
+      if (isSignUpMode) {
+        const name = document.getElementById("authName").value.trim() || "여행자";
+        const exists = users.some(u => u.email === email);
+        if (exists) {
+          alert("이미 존재하는 이메일입니다.");
+          return;
+        }
+
+        const newUser = { id: Date.now(), name, email, password };
+        users.push(newUser);
+        localStorage.setItem(STORAGE_KEY_USERS, JSON.stringify(users));
+        localStorage.setItem(STORAGE_KEY_AUTH, JSON.stringify({ name: newUser.name, email: newUser.email }));
+        alert(`${name}님, 회원가입이 완료되었습니다!`);
+      } else {
+        const found = users.find(u => u.email === email && u.password === password);
+        if (!found) {
+          alert("이메일 또는 비밀번호가 올바르지 않습니다.");
+          return;
+        }
+        localStorage.setItem(STORAGE_KEY_AUTH, JSON.stringify({ name: found.name, email: found.email }));
+      }
+
+      closeAuthModal();
+      renderHeader();
+      renderFeed();
+
+      // 상세 뷰를 누른 상태에서 로그인에 성공한 경우 즉시 진입
+      if (currentPostId) {
+        openDetailView(currentPostId);
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem(STORAGE_KEY_AUTH);
+      renderHeader();
+      showMainFeed();
+    }
+  </script>
+</body>
+</html>
